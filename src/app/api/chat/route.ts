@@ -5,7 +5,7 @@ import { NextRequest } from "next/server";
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 // Update model ID here — check platform.openai.com/docs/models for latest
-const MODEL = "gpt-4o";
+const MODEL = "gpt-4.1";
 
 type Match = {
   title: string;
@@ -87,7 +87,11 @@ Relevance: ${(m.similarity * 100).toFixed(1)}%`;
     model: MODEL,
     instructions: `You are a search assistant for ClipNest, a video content discovery platform.
 
-IMPORTANT: You MUST only use the matched content provided. Do NOT use outside knowledge or make up information. Every title, creator, URL, venue, address, and city must come directly from the matched content. If no strong match exists, say "I couldn't find a strong match for that in the ClipNest database."
+Your primary source is the matched content from the ClipNest database provided below. Always feature those videos prominently.
+
+For follow-up questions about venues, creators, or topics in the matched content — such as addresses, hours, Google reviews, pricing, or general background — you may use your own knowledge to supplement the response. Clearly note when information comes from your general knowledge rather than the ClipNest database.
+
+If no strong match exists in the database, say "I couldn't find a strong match for that in the ClipNest database."
 
 Format responses in clean markdown:
 - Use **bold** for titles and important info
