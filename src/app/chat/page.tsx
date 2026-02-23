@@ -176,6 +176,7 @@ export default function ChatPage() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Ask about videos..."
           disabled={loading}
+          autoComplete="off"
           className="flex-1 bg-gray-800 rounded-xl px-4 py-3 text-sm outline-none placeholder-gray-500 focus:ring-2 focus:ring-blue-500 disabled:opacity-50"
         />
         <button
